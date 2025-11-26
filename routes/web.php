@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\StokFarmasiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\ObatController;
@@ -10,10 +9,12 @@ use App\Http\Controllers\ValidasiResepFarmasiController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\GudangRequestController;
+use App\Http\Controllers\StokFarmasiController;
+use Illuminate\Support\Facades\Log;
 
 Route::get('/', function () {
     // Debug: Log untuk melihat apa yang terjadi
-    \Log::info('Root route accessed');
+    Log::info('Root route accessed');
     return redirect()->route('login');
 });
 
@@ -119,7 +120,6 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/{supplier}', [SupplierController::class, 'update'])->name('update');
             Route::delete('/{supplier}', [SupplierController::class, 'destroy'])->name('destroy');
         });
-
     });
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
